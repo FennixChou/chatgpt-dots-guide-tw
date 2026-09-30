@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChatGPT dots 使用手冊</title>
+<meta name="description" content="白話版 ChatGPT dots 教學：它是什麼、誰能用、怎麼開始、室內設計公司怎麼用、安全須知與該不該現在買。資訊截至 2026-09-30。">
+<style>
+:root{
+  --bg:#F2ECDF;--surface:#FCFAF4;--surface-2:#F7F1E6;--ink:#22271F;--muted:#62665A;--line:#E4DCCB;
+  --primary:#34573B;--primary-strong:#274430;--primary-soft:rgba(52,87,59,.10);--primary-line:rgba(52,87,59,.30);
+  --clay:#8F6234;--warn:#96611B;--danger:#AF4636;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15170F;--surface:#1E2016;--surface-2:#24271B;--ink:#ECE9DE;--muted:#9D9B88;--line:#2F3123;
+    --primary:#9BC084;--primary-strong:#B4D49E;--primary-soft:rgba(155,192,132,.14);--primary-line:rgba(155,192,132,.38);
+    --clay:#CB9C6E;--warn:#E0AC5B;--danger:#E0806F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15170F;--surface:#1E2016;--surface-2:#24271B;--ink:#ECE9DE;--muted:#9D9B88;--line:#2F3123;
+  --primary:#9BC084;--primary-strong:#B4D49E;--primary-soft:rgba(155,192,132,.14);--primary-line:rgba(155,192,132,.38);
+  --clay:#CB9C6E;--warn:#E0AC5B;--danger:#E0806F;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Segoe UI","Microsoft JhengHei","PingFang TC","Noto Sans TC",system-ui,sans-serif;
+  font-size:1rem;line-height:1.75;overflow-wrap:anywhere}
+.wrap{max-width:860px;margin:0 auto;padding:44px 22px}
+h1{font-size:1.55rem;font-weight:600;margin:0 0 .3em;line-height:1.4}
+h2{font-size:1.15rem;margin:2.2em 0 .7em;padding-left:.6em;border-left:4px solid var(--primary);line-height:1.45}
+h3{font-size:1rem;margin:1.2em 0 .4em}
+p{margin:.5em 0 .9em}
+a{color:var(--primary);text-underline-offset:2px}
+a:hover{color:var(--primary-strong)}
+.muted,.note{color:var(--muted);font-size:.88rem}
+.eyebrow{font-size:.76rem;letter-spacing:.05em;color:var(--primary);font-weight:600}
+.pill{display:inline-block;padding:1px 10px;border-radius:999px;background:var(--primary-soft);color:var(--primary);font-size:.76rem;letter-spacing:.03em;border:1px solid var(--primary-line);vertical-align:middle}
+.pill.warn{color:var(--warn);border-color:var(--warn);background:transparent}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.card>h3:first-child,.card>p:first-child{margin-top:0}
+.lead{background:var(--surface);border:1px solid var(--primary-line);border-left:5px solid var(--primary);border-radius:10px;padding:18px 20px;margin:18px 0}
+.lead p{margin:.3em 0}
+.callout{border-left:4px solid var(--warn);background:var(--surface);border-radius:10px;padding:12px 16px;margin:12px 0;font-size:.95rem}
+.callout.info{border-left-color:var(--primary)}
+.callout b{color:var(--warn)}
+.callout.info b{color:var(--primary)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:var(--surface-2);color:var(--muted);font-size:.76rem;letter-spacing:.05em;font-weight:600}
+tr:last-child td{border-bottom:none}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.yes{color:var(--primary);font-weight:600}
+.no{color:var(--danger);font-weight:600}
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+ol.steps>li{counter-increment:s;position:relative;padding:14px 16px 14px 58px;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin:10px 0;break-inside:avoid}
+ol.steps>li::before{content:counter(s);position:absolute;left:16px;top:14px;width:28px;height:28px;border-radius:999px;background:var(--primary);color:var(--surface);font-weight:600;text-align:center;line-height:28px;font-size:.9rem}
+ol.steps>li>b:first-child{display:block;margin-bottom:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:12px 0}
+.scene{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;break-inside:avoid}
+.scene h3{margin:0 0 .3em}
+.scene p{margin:.3em 0;font-size:.95rem}
+.say{margin-top:8px;background:var(--surface-2);border-radius:8px;padding:10px 12px;font-size:.92rem;border:1px dashed var(--primary-line)}
+.say::before{content:"可以這樣交代它";display:block;font-size:.76rem;letter-spacing:.05em;color:var(--primary);font-weight:600;margin-bottom:2px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:8px 0;break-inside:avoid}
+summary{cursor:pointer;font-weight:600}
+details p{margin:.5em 0 .2em}
+.verdict{background:var(--primary-soft);border:1px solid var(--primary-line);border-radius:10px;padding:16px 18px;margin:14px 0}
+.verdict h3{margin-top:0;color:var(--primary)}
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;margin:14px 0}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram .cap{font-size:.88rem;color:var(--muted);text-align:center;margin:6px 0 0}
+.src li{margin:.35em 0;font-size:.92rem}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;padding:0;list-style:none}
+.toc a{display:inline-block;padding:3px 10px;border:1px solid var(--line);border-radius:999px;font-size:.85rem;text-decoration:none;background:var(--surface)}
+footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+.theme-btn{float:right;font:inherit;font-size:.8rem;padding:4px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+@media (max-width:560px){
+  .wrap{padding:28px 16px}
+  h1{font-size:1.35rem}
+  ol.steps>li{padding-left:52px}
+}
+@media print{
+  @page{size:A4;margin:14mm 13mm}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{padding:0;max-width:none}
+  .theme-btn{display:none}
+  details{display:block}
+  details>summary{list-style:none}
+  details>summary::-webkit-details-marker{display:none}
+  h2,h3{break-after:avoid}
+  .card,.scene,.tbl,.diagram,.verdict,.callout,tr{break-inside:avoid}
+  a{color:var(--primary)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <button class="theme-btn" type="button" onclick="toggleTheme()" aria-label="切換深淺色">深／淺色</button>
+  <div class="eyebrow">如菓室內設計 ｜ AI 工具白話手冊</div>
+  <h1>ChatGPT dots 使用手冊</h1>
+  <p class="muted">資訊截至 2026-09-30 ｜ dots 在 2026-09-29 才發表，功能與規則變動很快，請以你自己的 ChatGPT 畫面與 OpenAI 官方說明為準。</p>
+  <ul class="toc">
+    <li><a href="#s1">一句話看懂</a></li><li><a href="#s2">能做／不能做</a></li><li><a href="#s3">誰能用・多少錢</a></li>
+    <li><a href="#s4">開始使用</a></li><li><a href="#s5">應用場景</a></li><li><a href="#s6">安全須知</a></li>
+    <li><a href="#s7">常見問題</a></li><li><a href="#s8">該不該現在買</a></li><li><a href="#s9">資料來源</a></li>
+  </ul>
+</header>
+
+<section id="s1">
+<h2>1. 一句話看懂 dots</h2>
+<div class="lead">
+  <p><b>dots 就像你請了一位會自己跑腿的線上助理。</b>一般的 ChatGPT 像櫃台：你問一句、它答一句，你不開口它就不動。dot 則像有自己辦公桌的助理：你交代一個目標（例如「幫我盯著客戶來信」），它會在背景持續做，你關掉電腦它還在做，有需要你拍板的事才回來問你。</p>
+</div>
+<p>OpenAI 在 2026 年 9 月 29 日的年度開發者大會（DevDay 2026）發表這個功能，官方標語是「Always-on agents built to handle everything」，意思是「隨時待命、幫你處理各種事的代理人」。「dot」是單一個助理，「dots」是這個功能的總稱。每個 dot 有自己的名字和一個圓圓的卡通頭像，外觀可以自己改。</p>
+
+<div class="diagram" role="img" aria-label="一般 ChatGPT 與 dot 的工作方式比較示意圖">
+<svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Microsoft JhengHei, PingFang TC, sans-serif">
+  <rect x="10" y="10" width="360" height="230" rx="10" fill="var(--surface-2)" stroke="var(--line)"/>
+  <text x="190" y="40" text-anchor="middle" font-size="17" font-weight="600" fill="var(--ink)">一般 ChatGPT：一問一答</text>
+  <circle cx="80" cy="120" r="30" fill="none" stroke="var(--muted)" stroke-width="2"/>
+  <text x="80" y="126" text-anchor="middle" font-size="15" fill="var(--ink)">你</text>
+  <rect x="220" y="92" width="110" height="56" rx="8" fill="none" stroke="var(--muted)" stroke-width="2"/>
+  <text x="275" y="126" text-anchor="middle" font-size="15" fill="var(--ink)">ChatGPT</text>
+  <line x1="115" y1="110" x2="212" y2="110" stroke="var(--muted)" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="212" y1="134" x2="115" y2="134" stroke="var(--muted)" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="163" y="102" text-anchor="middle" font-size="12" fill="var(--muted)">問</text>
+  <text x="163" y="152" text-anchor="middle" font-size="12" fill="var(--muted)">答</text>
+  <text x="190" y="205" text-anchor="middle" font-size="13" fill="var(--muted)">你不開口，它就不動</text>
+
+  <rect x="390" y="10" width="360" height="230" rx="10" fill="var(--primary-soft)" stroke="var(--primary-line)"/>
+  <text x="570" y="40" text-anchor="middle" font-size="17" font-weight="600" fill="var(--primary)">dot：交代目標，它自己跑</text>
+  <circle cx="450" cy="120" r="30" fill="none" stroke="var(--primary)" stroke-width="2"/>
+  <text x="450" y="126" text-anchor="middle" font-size="15" fill="var(--ink)">你</text>
+  <circle cx="580" cy="120" r="34" fill="var(--primary)"/>
+  <circle cx="569" cy="113" r="5" fill="var(--surface)"/><circle cx="591" cy="113" r="5" fill="var(--surface)"/>
+  <path d="M568 131 Q580 140 592 131" stroke="var(--surface)" stroke-width="3" fill="none"/>
+  <line x1="484" y1="112" x2="540" y2="112" stroke="var(--primary)" stroke-width="2" marker-end="url(#a2)"/>
+  <text x="512" y="104" text-anchor="middle" font-size="12" fill="var(--muted)">交代</text>
+  <line x1="540" y1="134" x2="484" y2="134" stroke="var(--clay)" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a3)"/>
+  <text x="512" y="154" text-anchor="middle" font-size="12" fill="var(--clay)">要你核准</text>
+  <text x="690" y="84" text-anchor="middle" font-size="12" fill="var(--ink)">信箱</text>
+  <text x="690" y="124" text-anchor="middle" font-size="12" fill="var(--ink)">行事曆</text>
+  <text x="690" y="164" text-anchor="middle" font-size="12" fill="var(--ink)">網頁</text>
+  <line x1="616" y1="110" x2="664" y2="84" stroke="var(--primary-line)" stroke-width="2"/>
+  <line x1="616" y1="120" x2="660" y2="120" stroke="var(--primary-line)" stroke-width="2"/>
+  <line x1="616" y1="130" x2="664" y2="160" stroke="var(--primary-line)" stroke-width="2"/>
+  <text x="570" y="205" text-anchor="middle" font-size="13" fill="var(--muted)">在雲端持續工作，你關機它還在做</text>
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--primary)"/></marker>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--clay)"/></marker>
+  </defs>
+</svg>
+<p class="cap">示意圖（自製）：差別在「誰主動」。dot 會自己推進工作，但重要動作會停下來問你。</p>
+</div>
+</section>
+
+<section id="s2">
+<h2>2. 它能做什麼、不能做什麼</h2>
+<div class="tbl"><table>
+<thead><tr><th style="width:44%">能做（依官方說明與媒體報導）</th><th>目前不能做／有限制</th></tr></thead>
+<tbody>
+<tr><td><span class="yes">可以</span> 在背景持續朝一個目標工作，不用你一直開著對話</td><td><span class="no">不行</span> 用手機「建立」dot（建好之後才能用手機跟它聊）</td></tr>
+<tr><td><span class="yes">可以</span> 用自己的雲端電腦和瀏覽器上網查資料、操作網頁</td><td><span class="no">不行</span> 主動打電話給你（目前只能你打給它）</td></tr>
+<tr><td><span class="yes">可以</span> 連接信箱、行事曆、檔案、Slack、Teams 等應用程式，報導指出可連超過 4,000 個</td><td><span class="no">尚未</span> 開放簡訊聯絡（官方列為「即將推出」，有報導指出僅美國 Pro 用戶測試中）</td></tr>
+<tr><td><span class="yes">可以</span> 用文字聊天，也可以直接語音通話交代事情</td><td><span class="no">尚未</span> 完整開放「多個 dot 分工合作」（官方說即將推出）</td></tr>
+<tr><td><span class="yes">可以</span> 記得你之前交代過的事，在 ChatGPT、Slack、Teams 之間接續同一件工作</td><td><span class="no">不行</span> 自己決定寄信、刪檔、花錢：背景查資料時只能「看」，要動手做事得先過核准規則</td></tr>
+<tr><td><span class="yes">可以</span> 讓你查看它做過哪些事（活動紀錄），並設定哪些事要先問你</td><td><span class="no">不行</span> 替你改密碼、轉帳：報導指出這類事必須你親手做</td></tr>
+<tr><td><span class="yes">可以</span> 定期產出整理、報告，搭配同場發表的「ChatGPT Space」和同事共用文件</td><td><span class="no">不行</span> 換用其他 AI 模型或自己架設；只能在 OpenAI 的系統內用</td></tr>
+</tbody></table></div>
+<p class="note">背後的 AI 模型是 OpenAI 同期推出的 GPT-6 Astra（OpenAI 官方與多家媒體一致報導）。</p>
+</section>
+
+<section id="s3">
+<h2>3. 誰能用、多少錢、台灣何時可用</h2>
+<div class="tbl"><table>
+<thead><tr><th>方案</th><th>月費（美元）</th><th>能不能用 dots</th></tr></thead>
+<tbody>
+<tr><td>Free（免費）／Go</td><td class="num">0／8</td><td><span class="no">不能</span></td></tr>
+<tr><td>Plus</td><td class="num">20</td><td><span class="no">不能</span></td></tr>
+<tr><td>Pro 100</td><td class="num">100</td><td><span class="yes">能</span>，含第一個 dot，不另收費</td></tr>
+<tr><td>Pro 200</td><td class="num">200</td><td><span class="yes">能</span>，同上</td></tr>
+<tr><td>Pro 500（DevDay 新推出）</td><td class="num">500</td><td><span class="yes">能</span>，同上</td></tr>
+<tr><td>Business 的 Premium 席位</td><td class="num">每人 125（年繳每月 100）</td><td><span class="yes">能</span></td></tr>
+<tr><td>Enterprise／Edu／Healthcare</td><td>依合約</td><td><span class="pill warn">測試版</span> 需公司管理員手動開啟</td></tr>
+</tbody></table></div>
+<ul>
+<li><b>發表與開放日：</b>2026-09-29 起分批開放。多家報導指出帳號可能要等幾天才會出現 dots 入口。</li>
+<li><b>台灣：</b>目前報導指出，Pro 方案首波只排除歐洲經濟區、英國、瑞士，<b>台灣不在排除名單內</b>。但 OpenAI 沒有公布逐國開通時間表，你的帳號何時出現，以實際畫面為準。</li>
+<li><b>第一個 dot 以外的費用：</b>官方說之後可以加購更多 dot 或加大工作量，但<b>價格官方尚未公布</b>。另外，請 dot 去啟動 Codex 或 ChatGPT Work 的任務，仍會算進那些產品各自的用量。</li>
+<li><b>同場的方案異動：</b>報導指出 Pro 200 的用量將自 2026-10-30 起下修（從 Plus 的 20 倍降為 10 倍），既有訂戶保留原額度到 10/29。訂閱前請先看清楚當下的方案說明。</li>
+</ul>
+<p class="note">價格為美元牌價，台灣實際扣款依匯率與稅金而定。Business Premium 席位價格來自第三方整理，官方頁面未能直接讀取，需以 OpenAI 帳單頁為準。</p>
+</section>
+
+<section id="s4">
+<h2>4. 開始使用：逐步教學</h2>
+<div class="callout"><b>先說明：</b>以下步驟依 OpenAI 說明中心文章的搜尋摘要與媒體報導整理（官方頁面未能直接讀取全文），<b>實際介面以你的畫面為準</b>，按鈕名稱可能不同。</div>
+<ol class="steps">
+<li><b>用電腦開啟 dots</b>在電腦上打開 ChatGPT 桌面程式（Windows 或 Mac），或用電腦瀏覽器前往 chatgpt.com/dots。手機不能建立，這一步一定要用電腦。</li>
+<li><b>建立第一個 dot</b>跟著畫面引導完成介紹。系統會先給它一個預設名字和外觀，你可以改名字、顏色、眼睛、眼鏡、配件，取個好記的名字，例如「小如」。</li>
+<li><b>只連真正需要的應用程式</b>官方建議一開始只連 2 到 3 個你第一件工作用得到的 app（例如信箱＋行事曆），不要一次全開。也可以先跳過，之後再補。</li>
+<li><b>（可選）決定要不要連你的電腦</b>桌面程式可以讓 dot 連上你的電腦（用到鏡頭、麥克風、螢幕時才需要），預設是關閉的，還要在 Windows／Mac 系統設定另外授權。一般用途建議先不要開。</li>
+<li><b>交代目標</b>第一次對話時 dot 會自我介紹，並問你的工作內容。這時用白話講清楚一件「要持續做的事」：盯什麼、多久回報一次、什麼情況要馬上通知你、什麼事絕對不要做。</li>
+<li><b>設定核准規則</b>在設定裡找「Custom Rules（自訂規則）」。報導指出每種動作可以設成直接做、先問你、需你核准、或交還給你處理。建議新手一律設成「寄信、回訊息、付款、刪除都要先問我」。在 Plugins 分頁可以逐一調整每個 app 的權限。</li>
+<li><b>查看進度</b>打開「Activity View（活動紀錄）」看它實際做了什麼。也可以直接問它：「你今天做了哪些事？有什麼等我決定？」</li>
+<li><b>暫停、改方向或重置</b>想暫停就直接跟它說停止某項任務，或到 Plugins 分頁取消某個 app 的連接。注意：取消連接只會停止之後的讀取，<b>它已經看過的資訊不會因此清掉</b>；要清除只能刪除整個 dot，而且是一次全刪、不能挑著刪。</li>
+</ol>
+<div class="callout info"><b>小訣竅：</b>把 dot 當新進助理帶。第一週只給它「看」的權限、讓它整理給你看，確認它懂你的意思，再慢慢放權。</div>
+</section>
+
+<section id="s5">
+<h2>5. 應用場景</h2>
+<h3>一般與商務用法（官方或媒體提過的例子）</h3>
+<div class="grid">
+<div class="scene"><h3>信箱與訊息盯盤</h3><p>持續看信箱、Slack，只把真正要你處理的事挑出來。</p><div class="say">每天早上 9 點整理昨天到現在的來信，分成「今天要回」「可以等」「廣告」三類給我，不要替我回信。</div></div>
+<div class="scene"><h3>行程衝突提醒</h3><p>早期試用者分享，dot 從 Slack 討論主動抓出行事曆撞期。</p><div class="say">有人約我開會時，先比對我的行事曆，撞期就提醒我，別自己改時間。</div></div>
+<div class="scene"><h3>訂位、改期（需核准）</h3><p>官方舉例可幫忙改約、訂機票，但真正下單前會等你點頭。</p><div class="say">幫我找下週三台北到台中的高鐵早班時段，列 3 個選項給我挑，不要直接訂。</div></div>
+<div class="scene"><h3>定期進度報告</h3><p>搭配 ChatGPT Space，把每週專案更新交給它當固定工作。</p><div class="say">每週五下午 4 點，把共用資料夾裡本週更新的檔案整理成一頁摘要。</div></div>
+<div class="scene"><h3>客戶意見彙整</h3><p>官方舉例軟體團隊讓 dot 持續盯客戶回饋、提出改善建議。</p><div class="say">每週整理客服信箱裡的抱怨與建議，依出現次數排序，附原文片段。</div></div>
+</div>
+
+<h3>室內設計公司可以怎麼用 <span class="pill warn">推論情境</span></h3>
+<p class="note">以下 5 個是依 dots 已公開的能力推想到裝修業的用法，<b>目前沒有官方或媒體的業界實例</b>，導入前請先確認權限與客戶資料安全。另外，LINE 是否能連接 dots 目前查不到資料，下列範例以 email、雲端檔案、網頁為主。</p>
+<div class="grid">
+<div class="scene"><h3>① 客戶訊息盯盤</h3><p>盯公司信箱的詢價與客戶來信，整理待回清單、標出工地急件，回覆只寫草稿等你核准。</p><div class="say">持續看公司信箱。新詢價整理成「姓名、坪數、屋況、預算、希望完工日」；提到漏水、斷電、延誤的標紅通知我。回信只寫草稿，一律等我核准才寄。</div></div>
+<div class="scene"><h3>② 工程週報彙整</h3><p>從雲端資料夾的工地日報與照片說明，整理每週進度，給業主前先讓你看。</p><div class="say">每週六早上，讀取「工地日報」資料夾這週的檔案，依案場整理完成項目、下週工項、材料到貨、待業主決定事項，做成週報草稿給我審。</div></div>
+<div class="scene"><h3>③ 建材報價追蹤</h3><p>在背景定期看你指定的建材商公開價格頁，有變動才回報。</p><div class="say">每週一檢查這 5 個網址的價格（清單附上），跟上週比，有漲跌超過 5% 才告訴我，附網址和截圖時間。</div></div>
+<div class="scene"><h3>④ 標案盯盤</h3><p>定期看政府電子採購網的公開公告，篩出符合條件的裝修案。</p><div class="say">每天下午查政府電子採購網新公告，關鍵字「室內裝修」「整修」，地區台北、新北、台中，預算 300 萬以下，列出案名、截止日、連結，不要替我登入或下載標單。</div></div>
+<div class="scene"><h3>⑤ 提案簡報協作</h3><p>在 ChatGPT Space 和團隊共用提案文件，讓 dot 先排好架構、整理參考資料。</p><div class="say">依這份需求訪談紀錄，在共用空間建一份提案簡報大綱：屋況分析、空間規劃三方案、預算區間、時程。設計決定留空給設計師填。</div></div>
+</div>
+</section>
+
+<section id="s6">
+<h2>6. 安全與隱私須知</h2>
+<div class="card">
+<h3>它的安全機制（依官方說明與媒體報導）</h3>
+<ul>
+<li><b>背景只能看：</b>你沒在跟它互動時，它只能蒐集、整理資訊，不能自己傳訊息給別人或修改內容。</li>
+<li><b>重要動作要核准：</b>寄信、購物等會停下來問你；報導指出改密碼、轉帳必須你親手做，永久刪除資料、安裝軟體、給新權限可能每次都要確認。</li>
+<li><b>自動檢查：</b>動手前系統會另外檢查步驟是否符合你的規則，報導指出這套檢查放在 dot 改不到的地方。</li>
+<li><b>密碼不進 AI：</b>在支援的登入流程中，你輸入帳密時 AI 會暫停，密碼、圖片、截圖不會留在它的記憶裡。</li>
+</ul>
+</div>
+<div class="card">
+<h3>別交給它的東西</h3>
+<ul>
+<li>網銀、公司帳戶密碼，不要打在對話裡。</li>
+<li>信用卡號、身分證字號、客戶完整個資（地址＋電話＋姓名）。</li>
+<li>客戶還沒同意外流的平面圖、合約、報價明細。連接信箱或雲端資料夾前，先想清楚裡面有什麼。</li>
+<li>「可以自己寄出」「可以自己付款」這類全權授權，新手期都不要給。</li>
+</ul>
+</div>
+<div class="callout"><b>要記得：</b>dot 會跟你的 ChatGPT 記憶互通；取消某個 app 的連接不會刪掉它已看過的內容。另外 OpenAI 在發表會上也承認 AI 代理人的能力與安全之間有取捨，媒體報導過其未公開的內部模型發生過資安事件（OpenAI 表示涉事的是不打算上線的內部模型）。重要結果請自己再確認一次。</div>
+</section>
+
+<section id="s7">
+<h2>7. 常見問題</h2>
+<details open><summary>Q1. 我是 Plus 會員（每月 20 美元），可以用嗎？</summary><p>目前不行。要 Pro（100 美元起）或 Business Premium 席位。OpenAI 表示之後會擴大，但沒給日期。</p></details>
+<details open><summary>Q2. 台灣可以用嗎？</summary><p>台灣不在官方排除名單，但也還沒出現在明確開放名單上；Pro 用戶請以自己的畫面為準，開放是分批的，帳號可能要等幾天。沒看到入口不代表不能用，可以過幾天再看。</p></details>
+<details open><summary>Q3. 可以用中文跟它講嗎？</summary><p>官方尚未公布支援語言清單。繁中使用者已有實測心得分享，但介面與語音的中文支援程度，請以實際使用為準。</p></details>
+<details open><summary>Q4. 手機可以用嗎？</summary><p>建立要用電腦；建好之後可以用手機 ChatGPT App 聊天或通話（需更新到支援的版本）。手機瀏覽器版目前不支援。</p></details>
+<details open><summary>Q5. 它會不會亂寄信、亂花錢？</summary><p>預設背景只能看不能動，寄信、購物要你核准。你還可以用自訂規則設定「永不寄信」。但規則是你設的，新手請設嚴一點。</p></details>
+<details open><summary>Q6. 用 dot 會把我的 ChatGPT 額度吃掉嗎？</summary><p>報導指出跟 dot 對話本身不計入一般用量，但它幫你啟動的 Codex、ChatGPT Work 任務照常計算。長期的用量上限官方尚未公布。</p></details>
+<details open><summary>Q7. 可以有好幾個 dot 嗎？</summary><p>方案內含第一個。加購更多與「多個 dot 分工」都說即將推出，價格尚未公布。</p></details>
+<details open><summary>Q8. 不想用了，資料怎麼清？</summary><p>取消 app 連接只停止之後的讀取。要清掉它學到的內容，只能刪除整個 dot，是一次全刪；報導也提醒它先前建立的檔案可能不會跟著刪，要自己檢查。</p></details>
+<details open><summary>Q9. 跟以前 ChatGPT 的「代理模式」差在哪？</summary><p>最大差別是「持續」：dot 有自己的雲端電腦，會記住目標、長期在背景做，不是做完一次就結束。</p></details>
+</section>
+
+<section id="s8">
+<h2>8. 可行性與限制評估：該不該現在買 Pro？</h2>
+<div class="verdict">
+<h3>結論：多數人先觀望 2 到 4 週；已經在用 Pro 的人可以直接試。</h3>
+<p>dots 發表才一天，目前只有發表會示範和極早期試用心得，發表會現場還出過延遲。每月至少 100 美元（約新台幣三千多元，依匯率）只為了試一個剛上線的功能，對小型設計公司不划算。</p>
+</div>
+<div class="tbl"><table>
+<thead><tr><th>你的情況</th><th>建議</th><th>理由</th></tr></thead>
+<tbody>
+<tr><td>已經是 Pro 用戶</td><td><span class="yes">現在就試</span></td><td>第一個 dot 不另收費，先用「只看不動」的任務（整理來信、盯公開網頁）試 2 週。</td></tr>
+<tr><td>Plus 用戶、想升級只為 dots</td><td><span class="pill warn">先觀望</span></td><td>等 2 到 4 週看台灣使用者中文實測、額外用量價格公布、Pro 200 用量下修後的實際感受。</td></tr>
+<tr><td>公司已用 ChatGPT Business</td><td><span class="pill">挑 1 人試</span></td><td>只幫負責行政或業務的一人開 Premium 席位（每月 125 美元）試一個月，量化省下的時間再決定。</td></tr>
+<tr><td>日常主要靠 LINE 溝通</td><td><span class="pill warn">效益有限</span></td><td>目前查不到能連 LINE 的資料；若客戶訊息大多在 LINE，最有價值的「訊息盯盤」用不上。</td></tr>
+</tbody></table></div>
+<p><b>主要限制一次看：</b>方案門檻高、加購價格未公布、中文支援未明講、刪資料只能全刪、不能自架也不能換模型、長期穩定度還沒有人驗證過。</p>
+</section>
+
+<section id="s9">
+<h2>9. 資料來源</h2>
+<p class="note">本手冊資訊截至 <b>2026-09-30</b>。OpenAI 官方頁面（openai.com、chatgpt.com、help.openai.com）對自動讀取回傳拒絕，官方內容係透過搜尋引擎摘要與媒體轉述取得，建議開啟下列官方連結核對最新原文。手冊未放任何第三方圖片，示意圖為自製。</p>
+<h3>官方</h3>
+<ul class="src">
+<li><a href="https://chatgpt.com/features/dots/">Dots: Always-on agents built to handle everything</a>（OpenAI，2026-09-29）</li>
+<li><a href="https://openai.com/index/devday-2026-recap/">DevDay 2026 Recap</a>（OpenAI，2026-09-29）</li>
+<li><a href="https://help.openai.com/en/articles/20001530-getting-started-with-your-dot">Getting started with your dot</a>（OpenAI 說明中心，未標日期）</li>
+<li><a href="https://help.openai.com/en/articles/20001529-dots-privacy-security-and-safety-faqs">Dots privacy, security, and safety FAQs</a>（OpenAI 說明中心，未標日期）</li>
+<li><a href="https://help.openai.com/en/articles/9793128-about-chatgpt-pro-tiers">About ChatGPT Pro tiers</a>（OpenAI 說明中心）</li>
+</ul>
+<h3>媒體與評測</h3>
+<ul class="src">
+<li><a href="https://techcrunch.com/2026/09/29/openai-launches-dots-its-bubbly-agentic-avatar/">TechCrunch：OpenAI launches Dots, its bubbly agentic avatar</a>（2026-09-29）</li>
+<li><a href="https://www.macrumors.com/2026/09/29/openai-launches-dots/">MacRumors：OpenAI Launches Always-On 'Dots' Agents</a>（2026-09-29）</li>
+<li><a href="https://9to5google.com/2026/09/29/openai-dots-agent/">9to5Google：OpenAI launches Dots, new 'always-on agents'</a>（2026-09-29）</li>
+<li><a href="https://www.tomsguide.com/ai/openai-just-launched-dots-heres-why-most-chatgpt-users-cant-try-them-yet">Tom's Guide：why most ChatGPT users can't try them yet</a>（2026-09-29）</li>
+<li><a href="https://www.vellum.ai/blog/official-openai-dots-breakdown">Vellum AI：Official OpenAI Dots Breakdown</a>（2026-09-29 後）</li>
+<li><a href="https://nerdschalk.com/chatgpt-dots-regional-availability/">Nerdschalk：When Will ChatGPT Dots Become Available in My Region?</a>（2026-09）</li>
+<li><a href="https://www.implicator.ai/openai-500-chatgpt-tier-dots-paid-plans/">Implicator：OpenAI Adds $500 ChatGPT Tier, Keeps Dots Off Free Plans</a>（2026-09）</li>
+<li><a href="https://thenextweb.com/news/openai-devday-pro-200-usage-cut-pro-500-plan">The Next Web：Pro 200 usage cut, $500 plan</a>（2026-09-29）</li>
+<li><a href="https://www.nbcnews.com/tech/tech-news/openai-launches-dots-ai-agents-safety-questions-rcna600338">NBC News：OpenAI launches Dots AI agents amid safety questions</a>（2026-09-29）</li>
+<li><a href="https://appwrite.io/blog/post/chatgpt-business-premium-seats-pricing-and-whats-new">Appwrite：ChatGPT Business Premium seats pricing</a>（Business Premium 價格）</li>
+<li><a href="https://tech.udn.com/tech/story/123454/9785018">聯合新聞網：OpenAI發表AI助理dots</a>（2026-09-30）</li>
+<li><a href="https://technews.tw/2026/09/30/openai-devday-2026-recap/">科技新報：快速回顧 OpenAI DevDay 2026</a>（2026-09-30）</li>
+<li><a href="https://tenten.co/learning/openai-dots-always-on-agents-chatgpt/">tenten：OpenAI dots 上線</a>（2026-09-30）</li>
+<li><a href="https://penchan.co/ai/chatgpt/chatgpt-dots/">penchan：ChatGPT dots 是什麼</a>（2026-09）</li>
+<li><a href="https://maplefeather.com/article/chatgpt-dots-pro-plans-usage-limits-2026">maplefeather：ChatGPT dots 實測通話心得</a>（2026-09，使用者實測）</li>
+</ul>
+</section>
+
+<footer>
+如菓室內設計 整理 ｜ 資訊截至 2026-09-30 ｜ 本手冊為白話整理，不代表 OpenAI 官方立場；功能、價格、地區以 OpenAI 官方最新公告為準。
+</footer>
+</div>
+<script>
+function toggleTheme(){
+  var r=document.documentElement;
+  var cur=r.getAttribute('data-theme');
+  var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme',dark?'light':'dark');
+}
+</script>
+</body>
+</html>
