@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ChatGPT dots 使用手冊</title>
-<meta name="description" content="白話版 ChatGPT dots 教學：它是什麼、誰能用、怎麼開始、室內設計公司怎麼用、安全須知與該不該現在買。資訊截至 2026-09-30。">
+<meta name="description" content="白話版 ChatGPT dots 教學：它是什麼、誰能用、怎麼開始、室內設計公司怎麼用、安全須知與該不該現在買。資訊截至 2026-10-01。">
 <style>
 :root{
   --bg:#F2ECDF;--surface:#FCFAF4;--surface-2:#F7F1E6;--ink:#22271F;--muted:#62665A;--line:#E4DCCB;
@@ -92,7 +92,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
   details>summary{list-style:none}
   details>summary::-webkit-details-marker{display:none}
   h2,h3{break-after:avoid}
-  .card,.scene,.tbl,.diagram,.verdict,.callout,tr{break-inside:avoid}
+  .card,.scene,.diagram,.verdict,.callout,tr{break-inside:avoid} thead{display:table-header-group}
   a{color:var(--primary)}
 }
 </style>
@@ -104,11 +104,11 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
   <button class="theme-btn" type="button" onclick="toggleTheme()" aria-label="切換深淺色">深／淺色</button>
   <div class="eyebrow">如菓室內設計 ｜ AI 工具白話手冊</div>
   <h1>ChatGPT dots 使用手冊</h1>
-  <p class="muted">資訊截至 2026-09-30 ｜ dots 在 2026-09-29 才發表，功能與規則變動很快，請以你自己的 ChatGPT 畫面與 OpenAI 官方說明為準。</p>
+  <p class="muted">資訊截至 2026-10-01 ｜ dots 在 2026-09-29 才發表，功能與規則變動很快，請以你自己的 ChatGPT 畫面與 OpenAI 官方說明為準。</p>
   <ul class="toc">
     <li><a href="#s1">一句話看懂</a></li><li><a href="#s2">能做／不能做</a></li><li><a href="#s3">誰能用・多少錢</a></li>
     <li><a href="#s4">開始使用</a></li><li><a href="#s5">應用場景</a></li><li><a href="#s6">安全須知</a></li>
-    <li><a href="#s7">常見問題</a></li><li><a href="#s8">該不該現在買</a></li><li><a href="#s9">資料來源</a></li>
+    <li><a href="#s7">常見問題</a></li><li><a href="#s8">該不該現在買</a></li><li><a href="#s9">雲端電腦有什麼</a></li><li><a href="#s10">怎麼派工</a></li><li><a href="#s11">資料來源</a></li>
   </ul>
 </header>
 
@@ -235,6 +235,34 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <div class="scene"><h3>④ 標案盯盤</h3><p>定期看政府電子採購網的公開公告，篩出符合條件的裝修案。</p><div class="say">每天下午查政府電子採購網新公告，關鍵字「室內裝修」「整修」，地區台北、新北、台中，預算 300 萬以下，列出案名、截止日、連結，不要替我登入或下載標單。</div></div>
 <div class="scene"><h3>⑤ 提案簡報協作</h3><p>在 ChatGPT Space 和團隊共用提案文件，讓 dot 先排好架構、整理參考資料。</p><div class="say">依這份需求訪談紀錄，在共用空間建一份提案簡報大綱：屋況分析、空間規劃三方案、預算區間、時程。設計決定留空給設計師填。</div></div>
 </div>
+<section class="subsection" id="cloud-local-split">
+<h3>室內設計／裝修公司：哪些交給 dot 的雲端電腦、哪些留在自己電腦 <span class="pill warn">推論情境</span></h3>
+<p class="note">dot 背後有一台自己的雲端電腦，但<b>目前查不到它有獨立顯示卡，它也連不上大部分需要登入的網站、也不會開 AutoCAD／SketchUp 這類專業繪圖軟體原生檔案</b>，而且雲端工作區保留多久官方沒說清楚，曾有使用者回報檔案無預警消失。以下對照依這些已知限制推論整理，<b>不是官方逐項測試過的結果</b>，正式導入前請先用不含真實客戶資料的測試檔案小規模試跑。</p>
+<div class="tbl"><table>
+<thead><tr><th style="width:20%">常見工作</th><th style="width:14%">怎麼分</th><th>白話理由</th><th style="width:15%">標記</th></tr></thead>
+<tbody>
+<tr><td>DXF 平面圖讀面積、讀圖層</td><td><span class="pill warn">兩者搭配</span></td><td>雲端能程式化批次讀 DXF 的圖層和面積，比人工在軟體裡逐一量測快；但雲端<b>不吃 DWG 原生格式</b>，也沒有繪圖軟體能顯示圖面讓人核對，複雜圖面建議先在自己電腦轉成 DXF，再交給雲端算數字。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>報價單 Excel 整理與轉 PDF</td><td><span class="no">留自己電腦</span></td><td>雲端有試算表和轉檔工具，技術上做得到；但報價單通常含成本價和客戶資料，雲端的保留期限不明、不保證不會外流或消失，不適合放上去。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>施工計畫／說明文件產生</td><td><span class="no">留自己電腦</span></td><td>這類文件通常綁著自己既有的排程邏輯與版型，雲端的通用文件工具做不出同樣的格式；加上文件常含案場與客戶資訊，同樣有隱私疑慮。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>提案簡報</td><td><span class="pill warn">兩者搭配</span></td><td>雲端能快速生出簡報的架構和初稿內容，省打字時間；但字體、顏色、版面要不要符合公司既定風格，還是得拿回自己電腦核對定稿。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>圖片批次縮圖、加浮水印</td><td><span class="yes">交給 dot 雲端</span></td><td>純粹是裁切、縮放、疊字這類不需要顯示卡的運算，雲端工具很成熟；如果圖裡有客戶案場畫面，處理完記得盡快下載回來，不要留在雲端太久。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>PDF 合併拆分與文字辨識</td><td><span class="yes">交給 dot 雲端</span></td><td>合併、拆分 PDF 和把掃描檔辨識成文字，都是雲端最成熟的一塊，純文字運算不吃顯示卡；若內容是合約或含個資的掃描檔，處理完一樣要下載並留意雲端保留風險。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>建材公開價格整理</td><td><span class="pill warn">兩者搭配</span></td><td>雲端程式只能連固定的少數網站（網路白名單限制，指雲端程式連線，瀏覽功能見第 9 章），不保證能連上建材商官網抓即時價格；但如果你已經把公開的價格資料下載下來，交給雲端整理成表格沒問題。公司內部的進價、成本價則不應該上傳。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>簡單 3D 量體</td><td><span class="pill warn">兩者搭配</span></td><td>雲端可以用程式畫出簡單的量體草模，給概念發想用；但目前查不到獨立顯示卡，正式要給客戶看的模型與算圖，還是得回到自己電腦的軟體完成。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>工程紀錄影片剪輯</td><td><span class="pill warn">兩者搭配</span></td><td>單純轉檔、壓縮、裁切片段雲端可以用純文字指令處理，速度不錯；但要拉時間軸、加轉場特效的正式剪輯，雲端的剪輯軟體穩不穩定沒有把握，建議留在自己電腦做。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>地圖與地籍參考</td><td><span class="no">留自己電腦</span></td><td>查地籍、政府圖資通常要即時連上特定政府網站或登入帳號，雲端的網路白名單不保證開放這些站（指雲端程式連線，瀏覽功能見第 9 章）；自己電腦能直接用平常慣用的查詢管道，比較可靠。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>DWG 編修</td><td><span class="no">留自己電腦</span></td><td>目前盤點查不到雲端電腦有能開啟、編修 DWG 原生格式的軟體，也查不到可用的轉檔工具，這類工作完全得留在裝有對應繪圖軟體的自己電腦上。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>SketchUp／酷家樂建模</td><td><span class="no">留自己電腦</span></td><td>雲端沒有裝這兩套軟體，雲端的瀏覽器也是全新、沒有登入任何帳號的環境，連不上需要登入的建模網站，這類工作只能留在自己電腦做。</td><td><span class="pill warn">推論情境</span></td></tr>
+<tr><td>擬真效果圖算圖</td><td><span class="no">留自己電腦</span></td><td>算擬真效果圖很吃顯示卡，雲端電腦目前查不到可用的顯示卡，純 CPU 算出來的品質和速度都不會到位，這類工作現階段只能靠自己電腦的設備。</td><td><span class="pill warn">推論情境</span></td></tr>
+</tbody></table></div>
+
+<p>以下 3 個範例可以直接交代給 dot（內容不含真實客戶資料，使用前把素材換成你自己的，公開/測試用途為主）：</p>
+<div class="grid">
+<div class="scene"><h3>批次圖片縮圖加浮水印</h3><p>整理行銷或提案用的公開示意圖。</p><div class="say">把這個資料夾裡的圖片全部縮到長邊 1600px，右下角加上半透明文字浮水印「提案參考用」，輸出到新的資料夾，完成後列一份檔名清單給我核對，不要留原始大圖以外的其他副本在雲端。</div></div>
+<div class="scene"><h3>合併 PDF 並做文字辨識</h3><p>整理多份已經去識別化的公開文件。</p><div class="say">把這幾份 PDF 合併成一份，裡面是掃描頁的部分幫我用文字辨識轉成可搜尋文字，輸出合併後的 PDF 和一份純文字摘要給我下載，完成後把雲端上的檔案都刪掉。</div></div>
+<div class="scene"><h3>DXF 平面圖讀圖層與面積</h3><p>批次核對圖層命名與面積，不涉及客戶身分。</p><div class="say">讀這份 DXF 平面圖，列出每個圖層的名稱和對應面積（平方公尺），整理成表格，標出哪些圖層看起來是牆、哪些是家具或標註，不確定的項目註明「需人工確認」，不要幫我修改原始檔案。</div></div>
+</div>
+</section>
 </section>
 
 <section id="s6">
@@ -291,8 +319,143 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 </section>
 
 <section id="s9">
-<h2>9. 資料來源</h2>
-<p class="note">本手冊資訊截至 <b>2026-09-30</b>。OpenAI 官方頁面（openai.com、chatgpt.com、help.openai.com）對自動讀取回傳拒絕，官方內容係透過搜尋引擎摘要與媒體轉述取得，建議開啟下列官方連結核對最新原文。手冊未放任何第三方圖片，示意圖為自製。</p>
+<h2>9. dot 的雲端電腦有什麼</h2>
+
+<div class="lead">
+<p><b>比喻：</b>dot 不是只活在你的對話視窗裡，它背後有一台放在 OpenAI 機房、你平常看不到畫面的雲端電腦——有點像公司配給一位遠距工讀生一台公司筆電：裡面裝哪些軟體看公司怎麼配，工讀生不能自己加裝顯示卡（目前查不到 GPU）、只能連公司允許的少數網站（白名單），東西放在那台電腦多久不會被清掉，連公司自己都說不準。</p>
+</div>
+
+<p class="note">以下規格與工具清單，一部分來自 dot 自己回報「我這台電腦裡有什麼」（標示 <span class="pill">dot自述</span>），一部分來自科技媒體與開發者各自獨立做的測試或拆解（標示 <span class="pill warn">外部報導</span>），兩者數字偶爾對不上；查不到資料的欄位標示「查無」。沒有一項是 OpenAI 官方正式公布的規格表。</p>
+
+<h3>硬體與環境規格</h3>
+<div class="tbl"><table>
+<thead><tr><th style="width:16%">項目</th><th>規格</th><th>來源</th></tr></thead>
+<tbody>
+<tr><td>作業系統</td><td>Debian GNU/Linux 13.6，核心 Linux 6.18.44</td><td><span class="pill">dot自述</span> 另有 <span class="pill warn">外部報導</span> 指向 Ubuntu 24.04.3（同一篇報導前後矛盾、版本有出入，只能確定是 Linux 系統）</td></tr>
+<tr><td>CPU</td><td>AMD EPYC 9V74，環境可見約 9 個邏輯核心（主機型號雖標示 80 核，不代表這台能用到 80 核）</td><td><span class="pill">dot自述</span> 與 <span class="pill warn">外部報導</span> 數字吻合，是最可信的一項</td></tr>
+<tr><td>記憶體</td><td>約 9.7 GiB，查核時可用約 8.7 GiB</td><td><span class="pill">dot自述</span> 與 <span class="pill warn">外部報導</span>（約 9.73GB）吻合</td></tr>
+<tr><td>硬碟（工作區）</td><td>約 32 GiB，可用約 30 GiB；另有約 4.9 GiB 的暫存空間（屬記憶體型，重開機可能清空，不是額外硬碟）</td><td><span class="pill">dot自述</span> 與 <span class="pill warn">外部報導</span> 吻合</td></tr>
+<tr><td>GPU</td><td>找不到顯示卡相關裝置，判斷「目前沒有可確認的 GPU」</td><td><span class="pill">dot自述</span>；<span class="pill warn">外部報導</span> 查無官方 GPU 聲明，只能從「裝了常吃 GPU 的軟體、卻只拆解出強力 CPU」推論「較可能沒有獨立 GPU」，非正式定論</td></tr>
+<tr><td>網路</td><td>只能連少數被允許的網域（例如 OpenAI 自己的網站與指定儲存空間），不能假設能自由上網、能幫你登入任何帳號。這裡指雲端電腦上「程式」的連線；dot 的搜尋／瀏覽功能走另一條通道，不受此清單直接限制，但實際能連哪些網站尚未驗證</td><td><span class="pill">dot自述</span>；<span class="pill warn">外部報導</span> 確認官方機制分「開放／關閉／限定主機」三種，但沒說 dot 預設是哪一種</td></tr>
+<tr><td>檔案保留期限</td><td>不確定，官方沒公布明確天數或清除排程</td><td>查無官方定論；<span class="pill warn">外部報導</span> 找到一則開發者回報「資料夾和終端機無預警消失」，問題尚未解決</td></tr>
+</tbody></table></div>
+<p class="note">以上數字是查核當下的一次快照，不是永久保證，規格可能隨版本更新而改變。</p>
+
+<h3>裡面裝了哪些工具</h3>
+<p>除了硬體，dot 的雲端電腦還預先裝了一批常見軟體與程式套件，大致可分成幾類（下表只挑每類最具代表性的幾項，完整清單遠不只這些）：</p>
+<div class="tbl"><table>
+<thead><tr><th>分類</th><th>代表程式（版本）</th><th>能做什麼</th><th>一般人可以怎麼交代它</th></tr></thead>
+<tbody>
+<tr><td>3D／CAD</td><td>Blender（4.3.2）、FreeCAD（版本未確認）、OpenSCAD（2021.01）</td><td>3D 建模、材質與渲染；程式化定義規格零件尺寸</td><td>「幫我做一個簡單的量體草模看比例」；正式的 SketchUp（.skp）或 AutoCAD（.dwg）檔，目前盤點查不到它能開或能存的工具</td></tr>
+<tr><td>圖片與繪圖</td><td>GIMP（3.0.4）、Inkscape（版本未確認）、ImageMagick（7.1.1）</td><td>修圖去背、向量圖編輯、批次轉檔與加浮水印</td><td>「把這 50 張照片都縮成同樣尺寸、加上我的浮水印」</td></tr>
+<tr><td>文件與辦公</td><td>LibreOfficeDev（26.8，開發版）、pandoc（3.1.11.1）</td><td>開啟與轉換 Word／Excel／PowerPoint；文字格式互轉</td><td>「把這份 Markdown 報告轉成 Word 檔」</td></tr>
+<tr><td>PDF 與 OCR</td><td>Ghostscript、pdftotext 等 PDF 工具一組；Tesseract（5.5.0）、ocrmypdf（16.7.0）</td><td>PDF 合併拆分、轉圖；掃描檔辨識文字</td><td>「把這 5 份 PDF 合併成一份」「把這張掃描合約轉成能複製的文字」——這是機器裡最成熟完整的一塊</td></tr>
+<tr><td>資料分析</td><td>pandas、numpy、matplotlib 等 Python 套件</td><td>整理表格、算統計、畫圖表</td><td>「幫我把這份 Excel 算出平均數，畫成長條圖」</td></tr>
+<tr><td>地圖</td><td>QGIS Desktop（版本未確認）、GDAL（3.10.3）</td><td>地理資料視覺化與格式轉換</td><td>只能處理「已經放進去的地圖檔」，不保證能即時連上地圖或地政網站查資料</td></tr>
+<tr><td>影音</td><td>FFmpeg（7.1.5）、Kdenlive（版本未確認）</td><td>影片轉檔、壓縮、裁切；時間軸剪輯</td><td>「把這部影片轉成 mp4 並壓縮檔案大小」；正式剪輯軟體在這台機器上穩不穩定沒有把握</td></tr>
+<tr><td>程式語言</td><td>Python（3.12／3.13）、Node.js（24.19）、Java（OpenJDK 21）</td><td>讓 dot 自己寫程式、跑腳本處理批次工作</td><td>不寫程式的人用不到這層，但可以請 dot「自己寫個程式幫我批次處理」</td></tr>
+<tr><td>常用指令工具</td><td>curl／wget（下載）、zip／unzip（壓縮）、git（版本控管）</td><td>下載檔案、打包壓縮、追蹤檔案版本</td><td>「把這些檔案打包成一個 zip 檔給我」</td></tr>
+<tr><td>中文字型</td><td>Noto Sans／Serif／Mono CJK TC（繁體中文）</td><td>正確顯示與輸出繁體中文</td><td>輸出 PDF、簡報時中文不會變方塊或亂碼；但不是品牌指定字體，正式對外文件仍要自己核對字體</td></tr>
+</tbody></table></div>
+
+<h3>強項與限制</h3>
+<div class="grid">
+<div class="card"><h3>強項</h3><ul>
+<li>文件、PDF 轉換與 OCR（掃描辨識文字）這塊工具最齊全，彼此印證也最一致。</li>
+<li>批次處理圖片（縮圖、加浮水印、格式轉換）很上手，不需要你自己動手。</li>
+<li>整理表格、算統計、產生 Excel／Word／簡報草稿都有現成工具。</li>
+</ul></div>
+<div class="card"><h3>限制</h3><ul>
+<li><b>目前查不到 GPU：</b>渲染、算圖、訓練 AI 模型這類工作不要指望它。</li>
+<li><b>程式連線受白名單限制：</b>雲端電腦上跑的程式只能連少數網站；dot 的搜尋／瀏覽功能走另一條通道（見上表網路列），但實際能開哪些網頁未經驗證，也別假設它能替你登入帳號。</li>
+<li><b>不支援 DWG／SKP：</b>沒有 AutoCAD、SketchUp 這類專業繪圖軟體，正式設計圖它做不出來，只能處理開放格式（例如 DXF）。</li>
+<li><b>檔案可能被清掉：</b>保留期限官方沒公布，已有使用者回報過資料夾無預警消失，東西做完要盡快下載回自己的電腦，不要只放在上面。</li>
+<li>以上所有規格都不是 OpenAI 官方正式保證，是使用者自己測出來、加上零星科技媒體報導拼湊而成。</li>
+</ul></div>
+</div>
+
+<div class="callout"><b>要記得：</b>此為作者 2026-10-01 於一個可使用 dots 的付費帳號實際盤點，你的 dot 可能不同——規格與預裝軟體會隨帳號方案、地區與版本更新而異，請以你自己畫面實際看到的為準。</div>
+
+</section>
+
+<section id="s10">
+<h2>10. dot 怎麼派工（子任務）</h2>
+<div class="callout info"><b>資料來源說明：</b>這章內容分兩種：一種是<b>直接問 dot 本人</b>它自己的派工能力，它怎麼回答就怎麼記（標「dot 自述」）；一種是查官方文件與第三方技術拆解整理出來的機制說明（標「外部查證」）。dot 自己也坦承有好幾個地方它答不出來（標「不確定」）。這塊功能剛上線、規則變動快，<b>請以你畫面上實際出現的選項為準</b>。</div>
+
+<h3>它能把工作轉包給誰 <span class="pill">dot 自述</span></h3>
+<p>dot 不是只能自己悶頭做，必要時可以把工作交出去，但交給誰要看當下環境支不支援，不是固定分成三組互不相關的「人力」。</p>
+<div class="tbl"><table>
+<thead><tr><th style="width:30%">對象</th><th>適合做什麼</th></tr></thead>
+<tbody>
+<tr><td><b>本機任務</b></td><td>在你已經連線授權的那台電腦上查程式、處理指定的本機檔案，或用那項任務實際提供的操作工具。適合「一定要在你電腦上做」的事。</td></tr>
+<tr><td><b>雲端工作任務</b></td><td>開一個獨立的雲端環境處理程式開發、資料分析、文件或模型工作。能不能開得成，要看當下有沒有合適的環境可用。</td></tr>
+<tr><td><b>它自己的雲端工具</b></td><td>不另外開新任務，直接處理已授權的程式碼、資料、圖片、文件。</td></tr>
+<tr><td><b>外掛／連接器</b></td><td>處理該外掛本身支援的查詢或操作；比較像一個工具介面，不是可以任意接單的代理人。</td></tr>
+<tr><td><b>其他 AI 助理</b>（例如你電腦上另一套助理）</td><td>目前沒有已驗證可用的直接派單管道。<b>不能因為它跟 dot 裝在同一台電腦，就認定 dot 可以指揮或控制它。</b></td></tr>
+</tbody></table></div>
+
+<h3>並行處理、指定模型 <span class="pill">dot 自述</span> <span class="pill warn">不確定</span></h3>
+<div class="card">
+<p><b>同時派多個：</b>可以把互不相依的工作平行排開，例如同時查核兩份不相關的資料。但<b>你的帳戶同時能跑幾個「看得見」的任務，dot 自己也說不確定、不敢保證固定數量</b>；如果幾個任務要共用同一台電腦或同一批檔案，還要注意彼此別搶著動同一份東西。</p>
+<p><b>指定模型／推理強度：</b>如果該任務的介面本身支援選擇，就可以指定。但實際能選哪些，受你的帳戶方案、執行環境與模型支援度限制，dot 表示它<b>自己也還沒摸清楚目前完整的選項清單</b>，不能保證任何模型都選得到。</p>
+</div>
+
+<h3>怎麼追蹤進度、任務失敗了怎麼辦 <span class="pill">dot 自述</span></h3>
+<ol class="steps">
+<li><b>交辦前先講清楚</b>目標、範圍、禁止事項，以及要用什麼證據證明「做完了」。</li>
+<li><b>拿到任務識別碼後持續查看</b>進度、完成狀態，並取回實際產出的成果。</li>
+<li><b>核對結果與證據，再回報給你。</b>它特別強調「任務顯示結束」不等於「全部都做成功了」，兩者要分開看。</li>
+<li><b>任務失敗時，先分清楚原因：</b>是工具本身缺失、權限不夠、執行環境離線，還是工作邏輯本身做錯了。</li>
+<li><b>能在原本授權範圍內修的才繼續處理；</b>如果需要新增操作或新的權限，會先回來問你，不會自己繞過限制硬做。</li>
+</ol>
+<div class="callout">有一次 dot 實際啟動了一個雲端工具的任務，雖然任務啟動成功，但那個環境裡沒有可以實際操作的介面可用，它就老實回報「沒做完」，而不是為了交差就宣稱完成——這是它自己舉的例子，用來說明它判斷「成功」的標準。</div>
+
+<h3>額度怎麼算 <span class="pill">外部查證</span> <span class="pill">dot 自述</span> <span class="pill warn">不確定</span></h3>
+<div class="card">
+<ul>
+<li><b>跟 dot 聊天本身</b>目前查到的說法是不算進一般使用量，但它<b>幫你啟動的雲端開發或工作型任務，會分別算進那些功能各自的用量上限</b>，不是另外單獨算一套。</li>
+<li>加購更多用量、或是同時用好幾個 dot 要怎麼收費，到目前為止官方都還沒公布。</li>
+<li>dot 自己也直接承認：<b>它不確定不同種類的任務各自怎麼計入你方案的額度</b>，手上也沒有可靠的「這個任務用掉多少、還剩多少」的計量資料。能做的只有依工作複雜度抓個大概，<b>沒辦法報出精確的點數或費用</b>。</li>
+<li>它也提醒：任務在你自己的電腦上執行，<b>不代表這件事就不耗用你的額度</b>。</li>
+</ul>
+</div>
+
+<h3>派出去的任務，還受不受你原本訂的規則約束 <span class="pill">dot 自述</span></h3>
+<div class="card">
+<p>你平常對它設下的使用限制，對它安排出去的工作<b>同樣有效，不能靠「轉包」就規避掉</b>。但它也老實說：<b>不能保證每個獨立派出去的任務會自動帶著完整的對話脈絡和全部規則走</b>，所以交辦的時候必須把相關限制再講清楚一次，並確認好哪些動作需要先經過核准。像是「先問過你才能動手」「不要刪除、覆蓋或搬移檔案」這類界線，不會因為換了一個任務就自動放寬。</p>
+</div>
+
+<h3>本機連線：怎麼開、兩層授權 <span class="pill">外部查證</span></h3>
+<p class="note">以下整理自官方文件與第三方技術拆解，查證於 2026-10-01，實際畫面與選項請以你帳號為準。</p>
+<ol class="steps">
+<li><b>預設是關閉的</b>讓 dot 連上你的個人電腦，是你自己選擇要不要開（opt-in），不會自動發生。</li>
+<li><b>要先在電腦上開 ChatGPT 桌面應用程式</b>（Mac 或 Windows，需要夠新的版本），而且這個桌面程式要<b>保持在執行中、並且登入正確帳號</b>，dot 才能用到你電腦上的資源；電腦離線或程式沒開著，dot 就完全碰不到本機資源。</li>
+<li><b>授權分兩層，缺一層都不能用：</b>第一層是在 ChatGPT 桌面程式裡，針對這個 dot 找到「連接電腦」的設定，選允許並再確認一次；第二層是如果要用到鏡頭、麥克風或畫面分享，還得另外到 Windows／macOS 的系統隱私設定裡，把這些權限單獨開給「ChatGPT」這個應用程式本身。</li>
+<li><b>一次只能連一台個人電腦。</b>想收回授權可以直接撤銷，但撤銷只會停止「之後」的使用，<b>它先前已經看過、用過的內容不會因此被清掉</b>（跟前面章節提過的「刪除資料是全有或全無」互相呼應）。</li>
+</ol>
+<div class="callout info"><b>連上本機之後能做的事：</b>使用你已經允許的本機資源與工具、接續本機上原本在跑的 Codex 任務、在雲端瀏覽器打不開某個頁面時改用你電腦上的瀏覽器。<b>限制：</b>電腦離線就完全用不到；一旦授權被收回，正在本機跑、而且已經失去存取權的那個子任務，<b>沒辦法在那台電腦上恢復</b>，得重新來過。</div>
+
+<h3>實用建議</h3>
+<div class="card">
+<ul>
+<li><b>派工前先問它一句：</b>這件事比較適合它自己處理，還是要另外開一個任務？它自己說要看當下有沒有合適環境才能決定，先問它一句會比自己用猜的準。</li>
+<li><b>交辦務必寫清楚四件事：</b>目標是什麼、範圍只到哪裡、絕對不能做什麼、拿什麼證據算做完了。這是它自己說它判斷「成功」的方式，交辦時講得越具體，它越不容易自己腦補範圍。</li>
+<li><b>重要或第一次做的任務，先小範圍試跑。</b>比照前面章節「新手期先只給它看的權限」的心法，派工也一樣：先讓它處理一小部分，確認做得對、做得好，再放大到全部。</li>
+<li><b>收到「任務結束」的通知不要照單全收。</b>它自己強調「結束」不等於「全部成功」，記得請它附上實際做完的證據，自己再核對一次。</li>
+</ul>
+</div>
+
+<h3>可以直接套用的範例指令</h3>
+<div class="grid">
+<div class="scene"><h3>先問適不適合派工</h3><p>讓它自己評估這件事該自己做還是該開任務，不要一開口就要它動手。</p><div class="say">先不要實際啟動任何任務。我想請你每天整理一次我的待辦清單，這件事你覺得比較適合你自己處理，還是該另外開一個任務？為什麼？</div></div>
+<div class="scene"><h3>交辦寫清楚四件事</h3><p>目標、範圍、禁止事項、驗收證據一次講清楚，降低它自己腦補範圍的機會。</p><div class="say">幫我安排一個任務：目標是〔講清楚要達成什麼〕。範圍只限於〔講清楚邊界〕。絕對不要刪除任何檔案、不要自己對外送出任何訊息、不要安裝軟體。做完後請附上你怎麼確認已經做完的證據再跟我回報，不要自己判定「結束」就算數。</div></div>
+<div class="scene"><h3>重要任務先小試</h3><p>先用最小範圍驗證做得對不對，確認沒問題再放大範圍。</p><div class="say">這個任務先用最小範圍試跑一次（例如只處理其中一筆、一天的量），把結果和你用的方法回報給我，我看過沒問題，你再繼續處理剩下的部分。</div></div>
+</div>
+</section>
+
+<section id="s11">
+<h2>11. 資料來源</h2>
+<p class="note">本手冊資訊截至 <b>2026-10-01</b>。OpenAI 官方頁面（openai.com、chatgpt.com、help.openai.com）對自動讀取回傳拒絕，官方內容係透過搜尋引擎摘要與媒體轉述取得，建議開啟下列官方連結核對最新原文。手冊未放任何第三方圖片，示意圖為自製。</p>
 <h3>官方</h3>
 <ul class="src">
 <li><a href="https://chatgpt.com/features/dots/">Dots: Always-on agents built to handle everything</a>（OpenAI，2026-09-29）</li>
@@ -307,6 +470,11 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 <li><a href="https://www.macrumors.com/2026/09/29/openai-launches-dots/">MacRumors：OpenAI Launches Always-On 'Dots' Agents</a>（2026-09-29）</li>
 <li><a href="https://9to5google.com/2026/09/29/openai-dots-agent/">9to5Google：OpenAI launches Dots, new 'always-on agents'</a>（2026-09-29）</li>
 <li><a href="https://www.tomsguide.com/ai/openai-just-launched-dots-heres-why-most-chatgpt-users-cant-try-them-yet">Tom's Guide：why most ChatGPT users can't try them yet</a>（2026-09-29）</li>
+<li><a href="https://learn.chatgpt.com/docs/dots">ChatGPT Learn：dots 說明文件</a>（官方，2026-10-01 讀取）</li>
+<li><a href="https://learn.chatgpt.com/docs/enterprise/cloud-local-access">ChatGPT Learn：雲端與本機連線</a>（官方，2026-10-01 讀取）</li>
+<li><a href="https://learn.chatgpt.com/docs/sandboxing">ChatGPT Learn：Sandbox 與網路設定</a>（官方，2026-10-01 讀取）</li>
+<li><a href="https://wccftech.com/openais-dot-vm-is-hosted-on-an-amd-epyc-9v74-80-core-processor-where-each-9-core-vm-instance-has-9-73-gb-of-memory-and-sports-a-multi-core-score-of-9435-on-geekbench-7/">Wccftech：dot 雲端虛擬機規格側錄</a>（2026-09-30，單一使用者回報）</li>
+<li><a href="https://github.com/openai/codex/issues/49682">GitHub issue #49682：雲端電腦檔案消失回報</a>（2026-09-30，開發者回報）</li>
 <li><a href="https://www.vellum.ai/blog/official-openai-dots-breakdown">Vellum AI：Official OpenAI Dots Breakdown</a>（2026-09-29 後）</li>
 <li><a href="https://nerdschalk.com/chatgpt-dots-regional-availability/">Nerdschalk：When Will ChatGPT Dots Become Available in My Region?</a>（2026-09）</li>
 <li><a href="https://www.implicator.ai/openai-500-chatgpt-tier-dots-paid-plans/">Implicator：OpenAI Adds $500 ChatGPT Tier, Keeps Dots Off Free Plans</a>（2026-09）</li>
@@ -322,7 +490,7 @@ footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);color:v
 </section>
 
 <footer>
-如菓室內設計 整理 ｜ 資訊截至 2026-09-30 ｜ 本手冊為白話整理，不代表 OpenAI 官方立場；功能、價格、地區以 OpenAI 官方最新公告為準。
+如菓室內設計 整理 ｜ 資訊截至 2026-10-01 ｜ 本手冊為白話整理，不代表 OpenAI 官方立場；功能、價格、地區以 OpenAI 官方最新公告為準。
 </footer>
 </div>
 <script>
